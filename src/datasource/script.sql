@@ -1,4 +1,5 @@
-create database if not exists apidatabase;
+drop database if exists apidatabase;
+create database apidatabase;
 
 use apidatabase;
 
@@ -16,7 +17,8 @@ insert into tblapi
 	(fullname, email, student)
 	values ('Adam Adamsen', 'adam@adam.dk', true),
     ('Bent Bentsen', 'bent@bent.dk', true),
-    ('Ziegekveit B. Zhonk', 'zig@email.dk', false);
+    ('Ziegelweit B. Zhonk', 'zig@email.dk', false);
 
-create user if not exists 'apiuser'@'localhost' identified by 'apilksdjflgksdl';
+drop user if exists 'apiuser'@'localhost';
+create user 'apiuser'@'localhost' identified by 'apilksdjflgksdl';
 grant select, insert, update, delete on apidatabase.tblapi to 'apiuser'@'localhost';
