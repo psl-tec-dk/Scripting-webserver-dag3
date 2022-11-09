@@ -34,3 +34,42 @@ exports.getById = id => {
         });
     });
 }
+
+exports.insert = jsonData => {
+    return new Promise((succes, failure) => {
+        const sql = "insert into tblapi (fullname, email, student) values(?, ?, ?)";
+        pool.execute(sql, [jsonData.fullname, jsonData.email, jsonData.student], (err, result) => {
+            if(err) {
+                failure(err);
+                return;
+            }
+            succes(result);
+        });
+    });
+}
+
+exports.update = (id, jsonData) => {
+    return new Promise((succes, failure) => {
+        const sql = "update tblapi set fullname = ?, email = ?, student = ? where id = ?";
+        pool.execute(sql, [jsonData.fullname, jsonData.email, jsonData.student, id], (err, result) => {
+            if(err) {
+                failure(err);
+                return;
+            }
+            succes(result);
+        });
+    });
+}
+
+exports.delete = (id) => {
+    return new Promise((succes, failure) => {
+        const sql = "delete from tblapi where id = ?";
+        pool.execute(sql, [id], (err, result) => {
+            if(err){
+                failure(err);
+                return;
+            }
+            succes(result);
+        });
+    });
+}

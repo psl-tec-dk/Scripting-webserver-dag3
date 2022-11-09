@@ -27,3 +27,39 @@ exports.getById = id => {
         });
     });
 }
+
+exports.insert = jsonData => {
+    return new Promise((succes, failure) => {
+        dbh.insert(jsonData)
+        .then(result => {
+            succes(result);
+        })
+        .catch(err => {
+            failure(err);
+        });
+    });
+}
+
+exports.update = (id, jsonData) => {
+    return new Promise((succes, failure) => {
+        dbh.update(id, jsonData)
+        .then(result => {
+            succes(result);
+        })
+        .catch(err => {
+            failure(err);
+        });
+    });
+}
+
+exports.delete = (id) => {
+    return new Promise((succes, failure) => {
+        dbh.delete(id)
+        .then( result => {
+            succes(result);
+        })
+        .catch(err => {
+            failure(err);
+        });
+    });
+}
